@@ -1,0 +1,504 @@
+@import url('https://fonts.googleapis.com/css2?family=Italianno&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+}
+
+/* .prayer-container{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 85vh;
+    width: 85vw;
+    text-align: center;
+}
+
+#prayer-text{
+    width: fit-content;
+    line-height: 1em;
+} */
+
+/* .prayer-span{
+    opacity: 0;
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    color: #858585;
+    text-shadow: 0 0 10px #F8FBFB, 0 0 15px #F8FBFB, 0 0 20px #F8FBFB;
+    z-index: 1001;
+}
+
+.prayer-span.word-reveal{
+    opacity: 0.80;
+    transition: opacity 5s ease-in;
+}
+
+.prayer-span.word-reveal.word-hide{
+    transition: opacity 3s ease-out;
+    opacity: 0;
+}  */
+
+#bibliography{
+    position: fixed;
+    top:0; 
+    right:0;
+    font-size: 10px;
+    padding: 1em;
+    width: fit-content;
+    height: fit-content;
+    color: #858585;
+    cursor: pointer;
+}
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+}
+
+.overlay.blur {
+    backdrop-filter: blur(5px); /* Final blur value */
+}
+  
+.overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: transparent;
+    background-image: url('/static/media/frame_7378252_1280_negate.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 20px;
+    border: solid black 2px;
+    border-radius: 5px;
+    line-height: 1.2em;
+    font-size: 10px;
+    height: 700px;
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+}
+
+.overlay-title{
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+    position: relative;
+    font-size: 30px;
+    color: #858585;
+    letter-spacing: 0.2em;
+    top: 20%;
+    text-shadow: 0 0 20px #F8FBFB, 0 0 10px #F8FBFB, 0 0 30px #F8FBFB;
+
+}
+
+#overlay-text{
+    position: relative;
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.3em;
+    color: #858585;
+    top: 25%;
+    width: 400px;
+    padding: 0px 100px;
+}
+
+#overlay-text a {
+    color: #858585;
+}
+
+.overlay-content img{
+    position:relative;
+    top: 33%;
+    left: -6%;
+}
+
+#overlay-close-button{
+    font-size: 15px;
+    color: #858585;
+    letter-spacing: 0.2em;
+    top: 7%;
+    left: 9%;
+    position: relative;
+}
+
+#overlay-close-button:hover{
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.prayer-point{
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: .20;
+    transform-origin: center;
+
+}
+
+.ri-shining-fill{
+    font-size: 3.5px;
+    color: rgba(255,254,221,1);
+}
+
+#prayer-source{
+    font-size: 9px;
+    padding: 2em;
+    position: fixed;
+    display: flex;
+    width: fit-content;
+    color: rgba(255,254,221,0.7);
+    top: 0%;
+}
+
+.connecting-line{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(195, 247, 255);
+    opacity: 0.05;
+    pointer-events: none; /* This ensures the line doesn't interfere with mouse events */
+}
+
+#grid-container {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+}
+
+/* .prayer-position{
+    position: absolute;
+    max-width: 50px;
+    width: fit-content;
+    height: fit-content;
+    text-align: center;
+    font-size: 3px;
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+    font-style: normal;
+    color: #858585;
+    opacity: 0;
+    z-index: 0;
+    line-height: 1em;
+    overflow: hidden;
+}
+
+.prayer-position.visible{
+    opacity: 0.8;
+    transition: opacity 5s ease-in;
+} */
+
+.slider {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 60%;
+    height: 1px;
+    box-shadow: 0 0 1px #F8FBFB, 0 0 2px #F8FBFB, 0 0 4px #F8FBFB;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    border-radius: 10px;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    position: absolute;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+}
+  
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: url('/static/media/8964622.png') no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    background: url('/static/media/8964622.png') no-repeat center;
+    background-size: contain;
+    cursor: pointer;
+}
+
+/* #sentence-list-wrapper {
+    height: 95vh; 
+    display: flex;
+    overflow: auto; 
+    width: 25vw;
+    border-radius: 20px;
+    background-color: rgba(255,255,255,0.1);
+    margin: 1% 0;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 2.5%;
+    padding: 1em 1.5em;
+    z-index: 5;
+}
+
+#sentence-list {
+    height: 100%; 
+    display: flex;
+    justify-content: flex-end; 
+    flex-direction: column; 
+    overflow-y: scroll; 
+}
+.sentence {
+    margin-bottom: 2em;
+    padding-top: 2em;
+    transition: 1s ease;
+    font-size: 9px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+    color: white;
+    width: 100%;
+    opacity: 0.9;
+}
+.current{
+    border-top: 0.5px solid white;
+    text-shadow: 0 0 20px #fff,
+               0 0 30px #fff,
+               0 0 40px #fff,
+               0 0 50px #fff,
+               0 0 60px #fff;
+}
+
+.flower{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    opacity: 0.4;
+    transition: opacity 0.7s ease;
+    text-align: center; 
+    z-index: 1;
+}
+
+.flower img{
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+}
+.flower .caption{
+    opacity: 0.7;
+    margin: 0 auto;
+    width: fit-content;
+    color: white;
+    text-align: center;
+}
+
+#field{
+    width: 100vw;
+    right: 0;
+    bottom: 0;
+    height: 100vh;
+    z-index: 0;
+    position: relative;
+} */
+
+#tree-1{
+    right: -11%;
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    width: auto;
+    height: 70%;
+    position: absolute;
+    bottom: 5%;
+    z-index: 10;
+    opacity: 0.15;
+}
+
+#tree-2{
+    right: -25%;
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    width: auto;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 15;
+    opacity: 0.2;
+}
+
+#tree-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    pointer-events: none; /* Allow interaction with the underlying content */
+}
+
+#tree-3 {
+    left: -20%;
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    width: auto;
+    height: 100%;
+    position: absolute;
+    bottom: -10px;
+    z-index: 15;
+    opacity: 0.2;
+}
+
+#tree-4 {
+    left: -10%;
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    width: auto;
+    height: 80%;
+    position: absolute;
+    bottom: 2%;
+    z-index: 15;
+    opacity: 0.2;
+}
+
+#silhouette{
+    width: 100%;
+    height: 50%;
+    display: flex;
+    overflow: hidden;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    
+}
+
+#silhouette img{
+    position: relative;
+    top: 1%;
+    width:50%;
+    height: auto;
+    /* -webkit-filter: invert(1);
+    filter: invert(1); */
+    object-fit: fill;
+    opacity: 0.6;
+}
+
+#silhouette::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+    pointer-events: none; /* Allow interaction with the underlying content */
+}
+
+#field {
+    position: absolute;
+    width: 100vw;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1) !important;
+}
+
+.sentence {
+    font-size: 10px; 
+    position: absolute; /* Allow for custom positioning */
+    transition: transform 0.3s ease, font-size 0.3s ease; /* Smooth transitions */
+    width: 20%;
+    /* width: fit-content; */
+    margin: 0 auto;
+    text-align: center; 
+    transform: translateX(-50%);
+    left: 50%; /* Start positioning from the middle of the parent div */
+    color: white;
+    opacity: 0.85;
+}
+.current{
+    text-shadow: 0 0 20px #fff,
+               0 0 30px #fff,
+               0 0 40px #fff,
+               0 0 50px #fff,
+               0 0 60px #fff;
+}
+
+.flower{
+    position: absolute;
+    width: fit-content;
+    height: fit-content;
+    opacity: 0.4;
+    transition: opacity 0.7s ease;
+    text-align: center; /* Centers the image horizontally */
+    z-index: 1;
+    transform: translate(-50%, -50%);
+}
+
+.flower img{
+    object-fit: cover;
+    -webkit-filter: invert(1);
+    filter: invert(1);
+    height: 30px;
+    width: 15px;
+}
+.flower .caption{
+    opacity: 0.7;
+    margin: 0 auto;
+    width: fit-content;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+}
+
+#sentence-overlay{
+    position: absolute; /* Overlay div will be positioned relative to #field */
+    width: 100%;
+    height: 50%;
+    z-index: 3; /* Adjust as needed to ensure it appears on top of #field */
+    overflow-y: scroll;
+    bottom: 0;
+    /* left: 50%; 
+    transform: translateX(-50%);  */
+}
+
+#sky {
+    position: absolute;
+    width: 100vw;
+    height: 80vh;
+    right: 0;
+    bottom: 0;
+}
+
+#transition {
+    width: 100vw;
+    right: 0;
+    bottom: 0;
+    height: 140vh;
+    z-index: 0;
+    position: relative; /* Change position to relative for flex layout */
+    /* background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%); */
+    /* background: linear-gradient(to bottom, black 0%, white 100%); */
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(75,75,75,1) 50%, rgba(250,250,250,1) 100%);
+    /* background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 45%, rgba(75,75,75,1) 66%, rgba(80,80,80,1) 67%, rgba(255,255,255,1) 100%); */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}

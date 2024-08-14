@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trail of Prayers</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css">
+    <link rel="stylesheet" href="../static/prayer.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id = 'transition'>
+        <div id = "prayer-source"></div>
+    <div id = "bibliography">( i )</div>
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <span class = "overlay-title">Bibliography</span>                      
+            <p id = "overlay-text"><a href = "https://en.wikipedia.org/wiki/Mirabai">Sant Meerabai (c.1498 - c.1548)</a> “The Devotional Poems Of Mirabai”<br>
+                <a href = "https://en.wikipedia.org/wiki/Mirra_Alfassa">Mirra Alfassa (1878 - 1973)</a>, “Prayers and Meditations”<br>
+                <a href = "https://en.wikipedia.org/wiki/Teresa_of_Ávila">Saint. Teresa of Ávila (1515 - 1582)</a>, “The Interior Castle”<br>
+                <a href = "https://en.wikipedia.org/wiki/Catherine_of_Genoa">Saint Catherine of Genoa (1147 - 1510)</a>, “Treatise on Purgatory”<br>
+                <a href = "https://en.wikipedia.org/wiki/Angela_of_Foligno">Angela of Foligno (1248 - 1309)</a>, “The Book of Divine Consolation of the Blessed Angela of Foligno”<br>
+                <a href = "https://en.wikipedia.org/wiki/Rabia_of_Basra">Rābiʼa al-ʼAdawiyya al-Qaysiyya c. (716 – 801)</a> “Poems”<br>
+                <a href = "https://en.wikipedia.org/wiki/Bahíyyih_Khánum">Bahíyyih Khánum (1846 - 1932)</a>, "A Compilation from Bahá’í Sacred Texts and Writings of the Guardian of the Faith and Bahíyyih Khánum’s Own Letters"<br>
+                <a href = "https://en.wikipedia.org/wiki/Margareta_Ebner">Margareta Ebner (1291 –1351)</a>, “The Revelations of Margaret Ebner”<br>
+            </p>
+            <span id="overlay-close-button"> x close </span>
+            <img width = "100px" height = "auto" src = "/static/media/candle_7509762_1280_negate.png">
+        </div>
+    </div>
+    <input type="range" value="0" step="1" class="slider" id="myRange">
+    </div>
+    <div id = 'field'>
+        <div id = "silhouette">
+            <img src = '/static/media/trees-6863878_1280.webp'>
+            <img src = '/static/media/trees-6863878_1280.webp'>
+        </div>
+        <div id = "sentence-overlay"></div>
+        <img id = "tree-1" src = "/static/media/tree-3993648_1280.webp">
+        <img id = "tree-2" src = "/static/media/tree-3993648_1280.webp">
+        <img id = "tree-3" src = "/static/media/leafless-1837498_1280.webp">
+        <img id = "tree-4" src = "/static/media/leafless-1837498_1280.webp">
+    </div>
+    <script src = "../static/prayers.js"></script>
+    <script src = "../static/prayercoord.js"></script>
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('#prayer-source');
+            const lastChild = document.body.lastElementChild;
+
+            // Calculate the maxScroll based on the end of the last child div
+            const maxScroll = lastChild.getBoundingClientRect().bottom - window.innerHeight;
+
+            // Calculate the scroll position ratio (0 to 1)
+            const scrollPosition = Math.min(window.scrollY / maxScroll, 1);
+
+            // Calculate the color values (from white to black)
+            const colorValue = Math.floor(255 * (1 - scrollPosition));
+            const textColor = `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+
+            // Apply the calculated color to the header
+            header.style.color = textColor;
+        });
+    </script>
+</body>
+</html>
